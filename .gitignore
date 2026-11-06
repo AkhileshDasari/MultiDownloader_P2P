@@ -1,0 +1,9 @@
+node_modules/
+data/
+storage/temp/
+storage/chunks/*.bin
+storage/files/*
+.env
+.DS_Store
+Thumbs.db
+*.log
