@@ -12,12 +12,16 @@ function setupP2PNetwork(io) {
         const { peer_id, user_id, peer_name, shared_files } = data;
         currentPeerId = peer_id;
 
+        const rawIp = socket.handshake.address || '127.0.0.1';
+        const clientIp = rawIp.replace(/^.*:/, '') === '1' ? '127.0.0.1' : rawIp.replace(/^.*:/, '');
+
         const peer = await Peer.findOneAndUpdate(
           { peer_id },
           {
             peer_id,
             user_id: user_id || 'guest',
             socket_id: socket.id,
+            ip_address: clientIp,
             peer_name: peer_name || `Peer-${socket.id.slice(0, 5)}`,
             status: 'Online',
             shared_files: shared_files || [],

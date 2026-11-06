@@ -158,6 +158,7 @@ Downloads occur concurrently across multiple swarm peers (inspired by Plexo and 
         peer_id: 'peer_node_alpha',
         user_id: seederUser.user_id,
         peer_name: 'Node-Alpha (Stockholm Seeder)',
+        ip_address: '192.168.1.104',
         status: 'Online',
         shared_files: [p2pFile1.file_id, p2pFile2.file_id],
         last_seen: new Date()
@@ -166,6 +167,7 @@ Downloads occur concurrently across multiple swarm peers (inspired by Plexo and 
         peer_id: 'peer_node_beta',
         user_id: admin.user_id,
         peer_name: 'Node-Beta (Frankfurt High-Speed Swarm)',
+        ip_address: '192.168.1.189',
         status: 'Online',
         shared_files: [p2pFile1.file_id, p2pFile3.file_id],
         last_seen: new Date()
@@ -174,6 +176,7 @@ Downloads occur concurrently across multiple swarm peers (inspired by Plexo and 
         peer_id: 'peer_node_gamma',
         user_id: user.user_id,
         peer_name: 'Node-Gamma (Tokyo Peer Relay)',
+        ip_address: '192.168.1.215',
         status: 'Online',
         shared_files: [p2pFile2.file_id, p2pFile3.file_id],
         last_seen: new Date()

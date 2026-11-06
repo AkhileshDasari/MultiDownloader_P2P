@@ -20,6 +20,10 @@ const PeerSchema = new mongoose.Schema({
     type: String,
     default: 'Peer-Node'
   },
+  ip_address: {
+    type: String,
+    default: '127.0.0.1'
+  },
   status: {
     type: String,
     enum: ['Online', 'Offline'],
