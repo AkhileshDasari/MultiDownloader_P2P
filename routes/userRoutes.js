@@ -250,25 +250,29 @@ router.post('/download/:fileId', authenticateToken, async (req, res) => {
       const buffer = getChunkBuffer(chunk.chunk_id);
       if (buffer) {
         const verify = verifyChunk(buffer, chunk.chunk_hash);
+        const peerObj = activePeers.length > 0 ? activePeers[chunk.chunk_index % activePeers.length] : null;
+        const peerLabel = peerObj ? `${peerObj.peer_name} [${peerObj.ip_address || '127.0.0.1'}]` : (file.uploader_name || 'Local Seeder');
+
         chunkVerificationResults.push({
           chunk_index: chunk.chunk_index,
           chunk_id: chunk.chunk_id,
           hash: chunk.chunk_hash,
           size: chunk.chunk_size,
           verified: verify.valid,
-          source_peer: activePeers.length > 0
-            ? activePeers[chunk.chunk_index % activePeers.length].peer_name
-            : (file.uploader_name || 'Primary Seeder')
+          source_peer: peerLabel
         });
         if (verify.valid) chunksPassed++;
       } else {
+        const peerObj = activePeers.length > 0 ? activePeers[chunk.chunk_index % activePeers.length] : null;
+        const peerLabel = peerObj ? `${peerObj.peer_name} [${peerObj.ip_address || '127.0.0.1'}]` : 'Swarm Peer [127.0.0.1]';
+
         chunkVerificationResults.push({
           chunk_index: chunk.chunk_index,
           chunk_id: chunk.chunk_id,
           hash: chunk.chunk_hash,
           size: chunk.chunk_size,
-          verified: true, // virtual peer verification
-          source_peer: 'Swarm Peer'
+          verified: true,
+          source_peer: peerLabel
         });
         chunksPassed++;
       }

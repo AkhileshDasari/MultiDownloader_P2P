@@ -60,9 +60,11 @@ async function startServer() {
     await connectDB();
     await seedInitialData();
 
-    server.listen(PORT, () => {
+    server.listen(PORT, '0.0.0.0', () => {
       console.log(`=======================================================`);
-      console.log(`🚀 P2P Downloader Server running on http://localhost:${PORT}`);
+      console.log(`🚀 P2P Downloader Server running on:`);
+      console.log(`   Local:   http://localhost:${PORT}`);
+      console.log(`   Network: http://172.25.188.125:${PORT}`);
       console.log(`📁 Admin Portal & Swarm Monitor ready`);
       console.log(`🔑 Seeded Credentials:`);
       console.log(`   Admin: admin@p2p.com / admin123`);
